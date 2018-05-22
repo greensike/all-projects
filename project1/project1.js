@@ -13,7 +13,6 @@ const Cards = {
 
 
     shuffleDeck: function () {
-
         for (let s = Cards.deck2.length; s < 52; s++) {
             let i = Math.floor(Math.random() * Cards.deck.length);
             Cards.deck2.push(Cards.deck[i]);
@@ -23,17 +22,20 @@ const Cards = {
     },
 
     hit: function () {
-    while(Cards.deck2.length > 0){
-        while(Player.hand < 1){
-          console.log(Cards.deck2[Cards.deck2.length -1])
+    if (Player.cards >= 2 && Player.cards < 5){
+        {
+        let hitCard = Cards.deck2[Cards.deck2.length -1]
+          console.log(hitCard)
           Cards.deck2.pop();
-          Player.hand++
+          Player.hand++;
         }
     }
     
     },
 
     deal2Cards: function () {
+        
+
     },
 
     flipCardInHand: function () {
@@ -44,10 +46,18 @@ const Cards = {
 
 }
 
+const Dealer = {
+    cards: 0,
+    points: 0,
+    hand: [],
+
+}
 
 
 const Player = {
-    hand: 0,
+    cards: 0,
+    points: 0,
+    hand: [],
 
 }
 
@@ -55,7 +65,7 @@ $(document).ready(function () { // doc start
     document.querySelector('#shuffle').addEventListener('click', function () {
         Cards.shuffleDeck();
     })
-    document.querySelector('#deal').addEventListener('click', function () {
+    document.querySelector('#hit').addEventListener('click', function () {
         Cards.hit();
     })
 
