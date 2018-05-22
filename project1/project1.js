@@ -22,10 +22,15 @@ const Cards = {
         console.log(Cards.deck2)
     },
 
-    pullCardFromTop: function () {
+    hit: function () {
+    while(Cards.deck2.length > 0){
         while(Player.hand < 1){
           console.log(Cards.deck2[Cards.deck2.length -1])
+          Cards.deck2.pop();
+          Player.hand++
         }
+    }
+    
     },
 
     deal2Cards: function () {
@@ -46,10 +51,13 @@ const Player = {
 
 }
 
-$(document).ready(function () {
-    document.querySelector('#deal').addEventListener('click', function () {
+$(document).ready(function () { // doc start
+    document.querySelector('#shuffle').addEventListener('click', function () {
         Cards.shuffleDeck();
+    })
+    document.querySelector('#deal').addEventListener('click', function () {
+        Cards.hit();
     })
 
 
-})
+}) //doc end
