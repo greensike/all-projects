@@ -22,28 +22,41 @@ const Cards = {
     },
 
     hit: function () {
-    if (Player.cards >= 2 && Player.cards < 5){
+    if (Player.hand.length >= 2 && Player.hand.length < 5){
         {
-        let hitCard = Cards.deck2[Cards.deck2.length -1]
-          console.log(hitCard)
-          Cards.deck2.pop();
+        let topCard = Cards.deck2[Cards.deck2.length -1]
+          console.log(topCard)
+          console.log(typeof topCard);      
+        Cards.deck2.pop();
           Player.hand++;
         }
     }
-    
     },
 
-    deal2Cards: function () {
-        
 
+    deal2CardstoPlayer: function (){
+        for (i = Player.cards; i < 2; i++){
+            let topCard = Cards.deck2[Cards.deck2.length -1]
+            Player.hand.push(topCard);
+            Cards.deck2.pop();    
+        }
+        console.log(Cards.deck2);
+        console.log(Player.hand);
     },
 
-    flipCardInHand: function () {
+    deal2CardstoDealer: function (){
+        for (i = Dealer.cards; i < 2; i++){
+            let topCard = Cards.deck2[Cards.deck2.length -1]
+            Dealer.hand.push(topCard);
+            Cards.deck2.pop();    
+        }
+        console.log(Cards.deck2);
+        console.log(Dealer.hand);
     },
+
 
     compareCardValue: function () {
     },
-
 }
 
 const Dealer = {
@@ -67,6 +80,12 @@ $(document).ready(function () { // doc start
     })
     document.querySelector('#hit').addEventListener('click', function () {
         Cards.hit();
+    })
+    document.querySelector('#deal').addEventListener('click', function () {
+        Cards.deal2CardstoPlayer();
+    })
+    document.querySelector('#dealersDeal').addEventListener('click', function () {
+        Cards.deal2CardstoDealer();
     })
 
 
