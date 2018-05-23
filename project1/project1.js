@@ -58,30 +58,29 @@ const Cards = {
         console.log(Dealer.hand);
     },
     
-    getValueOfCardLessThanTen: function(){
-        for (let i = 0; i < Player.hand.length; i++) {
-                    let cardInHand = Player.hand[i].split("");
-                    if (cardInHand[0] >  1 && cardInHand[0] < 10){
-                        let cardLowerThanTen = Number(cardInHand[0])
-                        Player.points = Player.points + cardLowerThanTen;
-                        console.log(Player.points)   
-                    }
-                }
-    },
+    // calculatePoint: function () {
+        
 
-    getValueOfFaceCard: function(){
-        for (let i = 0; i < Player.hand.length; i++) {
-            let cardInHand = Player.hand[i].split("");
-            if (cardInHand[0] == "K","Q","J","1"){
-                Player.points = Player.points + 10;
-                console.log(Player.points)
-            }
-        }
-    },
+    // },
 
     getPlayerPoints: function () {   
-        
-        
+        for (let i = 0; i < Player.hand.length; i++) {
+            let cardInHand = Player.hand[i].split("");
+            if (cardInHand[0] >  1 && cardInHand[0] < 10){
+                let cardLowerThanTen = Number(cardInHand[0])
+                Player.points = Player.points + cardLowerThanTen;
+                console.log(Player.points)
+                
+            }
+        }
+        // for (let i = 0; i < Player.hand.length; i++) {
+        //     let cardInHand = Player.hand[i].split("");
+        //     if (cardInHand[0] == "K","Q","J","1"){
+        //         Player.points = Player.points + 10;
+        //         console.log(Player.points - 10)
+        //     }
+        // }
+
             
         }
     }
