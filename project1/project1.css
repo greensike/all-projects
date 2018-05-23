@@ -1,0 +1,29 @@
+body{
+    background-image: url('greenTable.jpg');
+    background-size: 100%;
+}
+
+#dealersCards{
+    /* background-color: black; */
+    height: 200px;
+    width: 50%;
+    border: solid black 20px;
+    margin-left: 20%;;
+    margin-top: 5%;
+    display: flex;
+}
+
+#playersCards{
+    /* background-color: black; */
+    height: 200px;
+    width: 50%;
+    border: solid black 20px;
+    margin-left: 20%;;
+    margin-top: 5%;
+}
+
+.dealerHand{
+    height: 200px;
+    width: 100px;
+    border: solid purple;
+}

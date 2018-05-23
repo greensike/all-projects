@@ -3,11 +3,13 @@ const Cards = {
         Cards.shuffleDeck();
 
     },
-    //Math.floor(Math.random() * Cards.deck);
 
     deck2: [],
-    deck: ['A-Heart', '2-Heart', '3-Heart', '4-Heart', '5-Heart', '6-Heart', '7-Heart', '8-Heart', '9-Heart', '10-Heart', 'J-Heart', 'Q-Heart', 'K-Heart', 'A-Club', '2-Club', '3-Club', '4-Club', '5-Club', '6-Club', '7-Club', '8-Club', '9-Club', '10-Club', 'J-Club', 'Q-Club', 'K-Club', 'A-Diamond', '2-Diamond',
-        '3-Diamond', '4-Diamond', '5-Diamond', '6-Diamond', '7-Diamond', '8-Diamond', '9-Diamond', '10-Diamond', 'J-Diamond', 'Q-Diamond', 'K-Diamond', 'A-Spade', '2-Spade', '3-Spade', '4-Spade', '5-Spade', '6-Spade', '7-Spade', '8-Spade', '9-Spade', '10-Spade', 'J-Spade', 'Q-Spade', 'K-Spade'],
+    deck: ['A-Heart', '2-Heart', '3-Heart', '4-Heart', '5-Heart', '6-Heart', '7-Heart', '8-Heart', '9-Heart', '10-Heart', 'J-Heart',
+     'Q-Heart', 'K-Heart', 'A-Club', '2-Club', '3-Club', '4-Club', '5-Club', '6-Club', '7-Club', '8-Club', '9-Club', '10-Club', 'J-Club', 
+     'Q-Club', 'K-Club', 'A-Diamond', '2-Diamond','3-Diamond', '4-Diamond', '5-Diamond', '6-Diamond', '7-Diamond', '8-Diamond', '9-Diamond', 
+     '10-Diamond', 'J-Diamond', 'Q-Diamond', 'K-Diamond', 'A-Spade', '2-Spade', '3-Spade', '4-Spade', '5-Spade', '6-Spade', '7-Spade',
+      '8-Spade', '9-Spade', '10-Spade', 'J-Spade', 'Q-Spade', 'K-Spade'],
     standCount: 0,
 
     shuffleDeck: function () {
@@ -30,21 +32,20 @@ const Cards = {
                     console.log(Player.hand)
                     Cards.deck2.pop();
                 }
-                Player.points = 0;
             }
         }
     },
 
     hitDealer: function () {
-        if (Dealer.points < 17 && Dealer.points !== 21) {
+        while (Dealer.points < 17) {
             if (Dealer.hand.length > 1 && Dealer.hand.length < 5) {
                 {
                     let topCard = Cards.deck2[Cards.deck2.length - 1]
                     Dealer.hand.push(topCard)
                     Cards.deck2.pop();
+                    Cards.getDealerPoints();
                 }
-                 Dealer.points = 0;
-                 console.log(Dealer.hand)
+                console.log(Dealer.hand)
                 console.log(Dealer.points)
             }
         }
@@ -54,7 +55,10 @@ const Cards = {
         while(this.standCount == 0){
         Cards.hitDealer();     
         this.standCount++; 
-        }  
+        }
+
+        Cards.determineWinner();
+
     },
 
     deal2CardstoPlayer: function () {
@@ -65,7 +69,6 @@ const Cards = {
                 Cards.deck2.pop();
             }
         }
-        console.log(Cards.deck2);
         console.log(Player.hand);
     },
 
@@ -77,28 +80,32 @@ const Cards = {
                 Cards.deck2.pop();
             }
         }
-        console.log(Cards.deck2);
         console.log(Dealer.hand);
     },
 
     determineWinner: function () {
-
-        this.getPlayerPoints();
-        this.getDealerPoints();
-        if (Player.points > Dealer.points) {
-            console.log("you won")
+        console.log("in determine winner")
+        if(Dealer.points == 21 || Player.points == 21){
+            if (Player.points > Dealer.points) {
+                console.log("you won")
+            }
+            else if (Dealer.points > Player.points) {
+                console.log("dealer won")
+            }
         }
-        else if (Dealer.points > Player.points) {
-            console.log("dealer won")
+
+        if(Dealer.points > 21 || Player.points > 21){
+                console.log("BUSS")
+            
         }
     },
 
     getPlayerPoints: function () {
+        Player.points = 0;
         for (let i = 0; i < Player.hand.length; i++) {
             let cardInHand = Player.hand[i].split("");
             if (cardInHand[0] == "K" || cardInHand[0] == "Q" || cardInHand[0] == "J" || cardInHand[0] == "1") {
                 Player.points = Player.points + 10;
-
             }
             else if (cardInHand[0] > 1 && cardInHand[0] < 10) {
                 let cardLowerThanTen = Number(cardInHand[0])
@@ -106,20 +113,20 @@ const Cards = {
             }
             else if (cardInHand[0] == "A") {
                 if (Player.points > 10) {
-                    Player.points = Players.point + 1;
+                    Player.points = Player.point + 1;
                 }
                 else {
                     Player.points = Player.points + 11
                 }
-            }
+            } 
+        Cards.determineWinner();
         }
         console.log(Player.points)
-        return Player.points;
-
     },
 
 
     getDealerPoints: function () {
+        Dealer.points = 0;
         for (let i = 0; i < Dealer.hand.length; i++) {
             let cardInHand = Dealer.hand[i].split("");
             if (cardInHand[0] == "K" || cardInHand[0] == "Q" || cardInHand[0] == "J" || cardInHand[0] == "1") {
@@ -137,12 +144,13 @@ const Cards = {
                     Dealer.points = Dealer.points + 11
                 } 
             }
+        Cards.determineWinner();
         }
+        console.log(Dealer)
         console.log(Dealer.points)
-        return Dealer.points;
+        //return Dealer.points;
     },
 }
-
 
 const Dealer = {
     cards: 0,
@@ -150,7 +158,6 @@ const Dealer = {
     hand: [],
 
 }
-
 
 const Player = {
     cards: 0,
