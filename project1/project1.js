@@ -74,22 +74,30 @@ const Cards = {
 
 
     hitDealer: function () {
-            if (Dealer.hand.length > 1 && Dealer.hand.length < 5) {
-                Cards.getDealerPoints();
+            if (Dealer.hand.length >= 2 && Dealer.hand.length < 5) {
+                // Cards.getDealerPoints();
                 if(Dealer.points < 17){
-                     console.log('test')
+                     console.log(Dealer.points)
+                     console.log(Player.points)
                     for (let dealerUnflippedCards = 0; dealerUnflippedCards < 3; dealerUnflippedCards++) {
                     let topCard = Cards.deck2[Cards.deck2.length - 1]
+                    Cards.getDealerPoints();
                     Dealer.hand.push(topCard)
                     if(Dealer.points < 17){
                     if (Dealer.hitCount == 0) {
-                        $("#faceDownCard2").attr('src', topCard + ".png")                        
+                        $("#faceDownCard2").attr('src', topCard + ".png")
+                        console.log(Dealer.points)
+                        console.log(Player.points)                        
                     }
                     else if (Dealer.hitCount == 1) {
-                        $("#faceDownCard3").attr('src', topCard + ".png")                        
+                        $("#faceDownCard3").attr('src', topCard + ".png")
+                        console.log(Dealer.points)
+                        console.log(Player.points)                        
                     }
                     else if (Dealer.hitCount == 2) {
                         $("#faceDownCard4").attr('src', topCard + ".png")
+                        console.log(Dealer.points)
+                        console.log(Player.points)
                     }                 
                     Cards.deck2.pop();
                     Dealer.hitCount = Dealer.hitCount + 1;
@@ -101,8 +109,40 @@ const Cards = {
     },
 
     stand: function () {
+        console.log(Cards.getDealerPoints());
+        Cards.getPlayerPoints();
         Cards.standCount = Cards.standCount + 1;
-        Cards.hitDealer(); 
+        Cards.determineWinner();                   
+            if (Dealer.hand.length >= 2 && Dealer.hand.length < 5) {
+                if(Dealer.points > 17){
+                     console.log(Dealer.points)
+                     console.log(Player.points)
+                    for (let dealerUnflippedCards = 0; dealerUnflippedCards < 3; dealerUnflippedCards++) {
+                    let topCard = Cards.deck2[Cards.deck2.length - 1]
+                    Cards.getDealerPoints();
+                    Dealer.hand.push(topCard)
+                    // if(Dealer.points < 17){
+                    if (Dealer.hitCount == 0) {
+                        $("#faceDownCard2").attr('src', topCard + ".png")
+                        console.log(Dealer.points)
+                        console.log(Player.points)                        
+                    }
+                    Cards.deck2.pop();
+                    Dealer.hitCount = Dealer.hitCount + 1;
+                    // Cards.determineWinner();                   
+                  } 
+            // }
+        }
+        
+    }
+        if (Dealer.points == Player.points){
+            document.getElementById('result').textContent = "Tie Game";
+        }    
+        if (Dealer.hand.length >= 2 && Dealer.hand.length < 5) {
+            if(Dealer.points < 17){
+                Cards.hitDealer(); 
+            }
+        }
     },
 
     deal2CardstoPlayer: function () {
@@ -128,6 +168,9 @@ const Cards = {
                 Cards.deck2.pop();
                 document.getElementById("faceDownCard").src = Dealer.hand[0] + ".png"
             }
+            Cards.getDealerPoints();
+            console.log(Dealer.points)
+            console.log(Player.points)
         }
     },
 
@@ -136,23 +179,48 @@ const Cards = {
             if (Player.points > Dealer.points && Player.points > 16) {
                 Cards.hitDealer();
                 document.getElementById('result').textContent = "you won";
-                Cards.hitDealerOnce();
+                // Cards.hitDealerOnce(); 
             }
-            if (Dealer.points > Player.points && Dealer.points > 16) {
+            if (Player.points > Dealer.points && Player.points < 16) {
                 Cards.hitDealer();
+                document.getElementById('result').textContent = "you won";
+                // Cards.hitDealerOnce(); 
+            }
+            else if (Dealer.points > Player.points && Dealer.points > 16) {
                 document.getElementById('result').textContent = "dealer won";
                 Cards.hitDealerOnce();
             }
+            else if (Dealer.points > Player.points && Dealer.points < 16) {
+                Cards.hitDealer();
+                document.getElementById('result').textContent = "dealer won";
+                // Cards.hitDealerOnce();
+            }
+            
         }
-            if(Dealer.points > 21){
+        else{
+        if (Dealer.points == 21) {
+                document.getElementById('result').textContent = "Aww Dealer Won";
+                Cards.hitDealer();                  
+            }
+
+        if (Player.points == 21) {
+                document.getElementById('result').textContent = "You Won";
+                Cards.hitDealer();                  
+            }
+        if(Dealer.points > 21){
                 document.getElementById('result').textContent = "Dealer BUSS, You win"; 
                 Cards.hitDealer();  
             }
-            if(Player.points > 21){
-                Cards.hitDealer(); 
-                document.getElementById('result').textContent = "You BUSS, You lose";  
-                Cards.hitDealerOnce();              
+        if(Player.points > 21){
+            Cards.hitDealerOnce();   
+            document.getElementById('result').textContent = "You BUSS, You lose"; 
             }
+        if (Dealer.points == Player.points){
+                document.getElementById('result').textContent = "Tie Game";
+                Cards.hitDealerOnce();   
+                
+            }    
+        }
     },
 
     getPlayerPoints: function () {
