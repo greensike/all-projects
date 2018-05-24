@@ -31,3 +31,5 @@ Let the dealer draw additional cards until their hand exceeds 21.
   * gambling chips
   * Sound Effects
   * Restart Button
+
+  ![pic](project1WireFrame.jpg)
