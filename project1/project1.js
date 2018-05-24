@@ -45,27 +45,23 @@ const Cards = {
                     Player.hitCount = Player.hitCount + 1;
                     Cards.getPlayerPoints();
                     document.getElementById('boxScore').textContent = Player.points.toString();
-                    Cards.determineWinner();
-                                       
+                    Cards.determineWinner();               
                      }
             }
         }
         }
-       
     },
 
     hitDealerOnce: function () {
         if (Dealer.hand.length > 1 && Dealer.hand.length < 3) {
             Cards.getDealerPoints();
             if(Dealer.points < 17){
-                 console.log('test')
                 for (let dealerUnflippedCards = 0; dealerUnflippedCards < 1; dealerUnflippedCards++) {
                 let topCard = Cards.deck2[Cards.deck2.length - 1]
                 Dealer.hand.push(topCard)
                 if(Dealer.points < 17){
                 if (Dealer.hitCount == 0) {
                     $("#faceDownCard2").attr('src', topCard + ".png")
-                 console.log('test1')   
                 }             
                 Cards.deck2.pop();
                 Dealer.hitCount = Dealer.hitCount + 1;
@@ -87,19 +83,13 @@ const Cards = {
                     Dealer.hand.push(topCard)
                     if(Dealer.points < 17){
                     if (Dealer.hitCount == 0) {
-                        $("#faceDownCard2").attr('src', topCard + ".png")
-                     console.log('test1')
-                        
+                        $("#faceDownCard2").attr('src', topCard + ".png")                        
                     }
                     else if (Dealer.hitCount == 1) {
-                        $("#faceDownCard3").attr('src', topCard + ".png")
-                     console.log('test2')
-                        
+                        $("#faceDownCard3").attr('src', topCard + ".png")                        
                     }
                     else if (Dealer.hitCount == 2) {
                         $("#faceDownCard4").attr('src', topCard + ".png")
-                     console.log('test3')
-                        
                     }                 
                     Cards.deck2.pop();
                     Dealer.hitCount = Dealer.hitCount + 1;
@@ -142,21 +132,18 @@ const Cards = {
     },
 
     determineWinner: function () {
-        console.log("in determine winner")
         if(Dealer.points < 21 && Player.points < 21){
-            if (Player.points > Dealer.points) {
+            if (Player.points > Dealer.points && Player.points > 16) {
                 Cards.hitDealer();
                 document.getElementById('result').textContent = "you won";
                 Cards.hitDealerOnce();
             }
-            if (Dealer.points > Player.points) {
+            if (Dealer.points > Player.points && Dealer.points > 16) {
                 Cards.hitDealer();
                 document.getElementById('result').textContent = "dealer won";
                 Cards.hitDealerOnce();
-      
             }
         }
-
             if(Dealer.points > 21){
                 document.getElementById('result').textContent = "Dealer BUSS, You win"; 
                 Cards.hitDealer();  

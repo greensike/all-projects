@@ -6,10 +6,20 @@ body{
 .top{
     width: 100px;
     height:50px;
-    border: solid red;
+    border: solid black;
     display:flex;
     justify-content: center;
     background-color: aliceblue;
+}
+
+.eachButton{
+    margin-left: 10px;
+    height: 50px;
+}
+
+#buttons{
+    margin-top: 40px;
+    margin-left: 40px;
 }
 
 #boxScore{
@@ -29,6 +39,14 @@ body{
     margin-left: 20%;;
     margin-top: 2%;
     display: flex;
+}
+
+#stand{
+    border: solid red;
+}
+
+#hit{
+    border: solid green;
 }
 
 #playersCards{

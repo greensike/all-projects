@@ -1,7 +1,5 @@
 #  Project1 : Black Jack
 
-
-
 ## Project Description
 
 The aim of this assignment was to make a game that would let the user to play a game of Black Jack. Black Jack is a comparing card game between usually several players and a dealer, where each player in turn competes against the dealer, but players do not play against each other. It is played with one or more decks of 52 cards, and is the most widely played casino banking game in the world. The objective of the game is to beat the dealer in one of the following ways:
@@ -16,33 +14,20 @@ Let the dealer draw additional cards until their hand exceeds 21.
 
   * Languages - HTML5, CSS3, Javascript
   * Wireframe - Balsamiq
-  * Project Planning & User Stories - [Trello](https://trello.com/b/yaXc4pEC/ajs-jeopardy)
-  * Deployment - Bitballoon - [Bitballoon](http://practical-spence-a5b035.bitballoon.com/)
+  * Project Planning & User Stories - [Trello](https://trello.com/b/ZfgBj7PV/project-1)
+  * Deployment - Bitballoon - [Bitballoon]()
   * Visual Studio Code
   * iTerm
 
 
 ## Features
  
-  * Scoreboard
-  * Instructions
-  * Disabled Buttons
-  * Click Events
-  * Hover Effects
-
-
-## Wireframe
-
-![Wireframe](images/board.png)
-![Wireframe](images/instructions.png)
-![Wireframe](images/answerBoard.png)
-
+  * Score
+  * Cards
+  * Clickable Buttons
+  * Win Result
 
 ## Additions to a Future Version
-
-  * Style the background
-  * Keyframes
-  * More challenging questions
-  * A game over animation
-  * Round 2
-  * Add useful commit messages
+  * gambling chips
+  * Sound Effects
+  * Restart Button
