@@ -8,7 +8,12 @@ body{
     height:50px;
     border: solid red;
     display:flex;
+    justify-content: center;
     background-color: aliceblue;
+}
+
+#boxScore{
+        margin-bottom: 20px;
 }
 
 #bigBox{
@@ -21,7 +26,7 @@ body{
     height: 200px;
     width: 50%;
     /* border: solid black 20px; */
-    margin-left: 25%;;
+    margin-left: 20%;;
     margin-top: 2%;
     display: flex;
 }
@@ -30,7 +35,7 @@ body{
     height: 200px;
     width: 50%;
     /* border: solid black 20px; */
-    margin-left: 25%;;
+    margin-left: 20%;;
     margin-top: 5%;
     display: flex;
 }
@@ -49,4 +54,32 @@ body{
     /* border: solid yellow; */
     margin-left: 20px;
     display: flex;
+}
+
+h3{
+    color: white;
+}
+
+#shuffle{
+    display: none;
+}
+
+#deal{
+    display: none;
+}
+
+#dealersPoint{
+    display: none;
+}
+
+#dealersDeal{
+    display: none;
+}
+
+#playersPoint{
+    display: none;
+}
+
+#hitDealer{
+    display: none;
 }
