@@ -4,9 +4,17 @@ body{
 }
 
 .top{
-    width: 50px;
+    width: 100px;
     height:50px;
-    border: solid;
+    border: solid red;
+    display:flex;
+    background-color: aliceblue;
+}
+
+#bigBox{
+    margin-top: 50px;
+    margin-left: 40%;
+    display: flex;
 }
 
 #dealersCards{
@@ -14,7 +22,7 @@ body{
     width: 50%;
     border: solid black 20px;
     margin-left: 20%;;
-    margin-top: 5%;
+    margin-top: 2%;
     display: flex;
 }
 

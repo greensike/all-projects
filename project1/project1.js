@@ -12,6 +12,7 @@ const Cards = {
       '8-Spade', '9-Spade', '10-Spade', 'J-Spade', 'Q-Spade', 'K-Spade'],
     standCount: 0,
     cardSpot: 0,
+    isRunning: false,
     
 
     shuffleDeck: function () {
@@ -20,7 +21,8 @@ const Cards = {
             Cards.deck2.push(Cards.deck[i]);
             Cards.deck.splice(i, 1);
         }
-        console.log(Cards.deck2)
+        Cards.deal2CardstoPlayer();
+        Cards.deal2CardstoDealer();
     },
 
     hit: function () {
@@ -41,6 +43,8 @@ const Cards = {
                     }                    
                     Cards.deck2.pop();                    
                     Player.hitCount = Player.hitCount + 1;
+                    Cards.getPlayerPoints();
+                    document.getElementById('boxScore').textContent = Player.points.toString();
                 }
             }
         }
@@ -65,19 +69,10 @@ const Cards = {
                     else if (Dealer.hitCount == 2) {
                         $("#faceDownCard5").attr('src', topCard + ".png")
                     }                 
-                   
                     Cards.deck2.pop();
-                    Dealer.hitCount = Dealer.hitCount + 1;
-                    console.log(Dealer.hitCount)
-                    
+                    Dealer.hitCount = Dealer.hitCount + 1;                    
                   }            
-            
-                
             }
-                console.log(Dealer.hand)
-                console.log(Dealer.points)
-                console.log(Dealer.hitCount)
-                
         }
     },
 
@@ -92,16 +87,14 @@ const Cards = {
             for (i = Player.cards; i < 2; i++) {
                 let topCard = Cards.deck2[Cards.deck2.length - 1]
                 Player.hand.push(topCard);
-                // if(topCard > 0){
                 document.getElementById("faceDownCard6").src = Player.hand[0] + ".png"
                 document.getElementById("faceDownCard7").src = Player.hand[1] + ".png"
-                // }
                 Cards.deck2.pop();
-                console.log(topCard); 
             }
-        }
-               
-        console.log(Player.hand);
+            Cards.getPlayerPoints();
+            document.getElementById('boxScore').textContent = Player.points.toString();
+
+        }           
     },
 
     deal2CardstoDealer: function () {
@@ -113,23 +106,21 @@ const Cards = {
                 document.getElementById("faceDownCard").src = Dealer.hand[0] + ".png"
             }
         }
-        console.log(Dealer.hand);
     },
 
     determineWinner: function () {
         console.log("in determine winner")
         if(Dealer.points == 21 || Player.points == 21){
-            if (Player.points > Dealer.points) {
-                console.log("you won")
+            if (Player.points > Dealer.points && Player.points < 21) {
+                document.getElementById('result').textContent = "you won";
             }
-            else if (Dealer.points > Player.points) {
-                console.log("dealer won")
+            else if (Dealer.points > Player.points && Dealer.points < 21) {
+                document.getElementById('result').textContent = "dealer won";
             }
         }
 
         if(Dealer.points > 21 || Player.points > 21){
-                console.log("BUSS")
-            
+            document.getElementById('result').textContent = "BUSS";            
         }
     },
 
@@ -155,6 +146,11 @@ const Cards = {
         //Cards.determineWinner();
         }
         return Player.points;
+    },
+
+    startGame: function(){
+        Cards.isRunning = true;
+        Cards.shuffleDeck();
     },
 
     getDealerPoints: function () {
@@ -226,6 +222,10 @@ $(document).ready(function () { // doc start
     document.querySelector('#stand').addEventListener('click', function () {
         Cards.stand();
     })
+    document.querySelector('#startGame').addEventListener('click', function () {
+        Cards.shuffleDeck();
+    })
+    
 
     $('Dealer1stCard').click(function () {
         $('faceDownCard').attr('src', 'A-Club.png');
