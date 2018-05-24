@@ -120,8 +120,13 @@ const Cards = {
                 }
             } 
         Cards.determineWinner();
+        Cards.changeCardVisual();
         }
         console.log(Player.points)
+    },
+
+    changeCardVisual: function(){
+        document.getElementById('Dealer1stCard').textContent = cardInHand[0];
     },
 
 
@@ -191,6 +196,10 @@ $(document).ready(function () { // doc start
     document.querySelector('#stand').addEventListener('click', function () {
         Cards.stand();
     })
+
+    $('Dealer1stCard').click(function () {
+        $('faceDownCard').attr('src', 'A-Club.png');
+        })
 
 
 }) //doc end

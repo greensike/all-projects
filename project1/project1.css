@@ -4,7 +4,6 @@ body{
 }
 
 #dealersCards{
-    /* background-color: black; */
     height: 200px;
     width: 50%;
     border: solid black 20px;
@@ -14,16 +13,26 @@ body{
 }
 
 #playersCards{
-    /* background-color: black; */
     height: 200px;
     width: 50%;
     border: solid black 20px;
     margin-left: 20%;;
     margin-top: 5%;
+    display: flex;
 }
 
 .dealerHand{
     height: 200px;
     width: 100px;
     border: solid purple;
+    margin-left: 20px;
+    display: flex;
+}
+
+.playerHand{
+    height: 200px;
+    width: 100px;
+    border: solid yellow;
+    margin-left: 20px;
+    display: flex;
 }
