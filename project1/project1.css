@@ -20,8 +20,8 @@ body{
 #dealersCards{
     height: 200px;
     width: 50%;
-    border: solid black 20px;
-    margin-left: 20%;;
+    /* border: solid black 20px; */
+    margin-left: 25%;;
     margin-top: 2%;
     display: flex;
 }
@@ -29,8 +29,8 @@ body{
 #playersCards{
     height: 200px;
     width: 50%;
-    border: solid black 20px;
-    margin-left: 20%;;
+    /* border: solid black 20px; */
+    margin-left: 25%;;
     margin-top: 5%;
     display: flex;
 }
@@ -38,7 +38,7 @@ body{
 .dealerHand{
     height: 200px;
     width: 100px;
-    border: solid purple;
+    /* border: solid purple; */
     margin-left: 20px;
     display: flex;
 }
@@ -46,7 +46,7 @@ body{
 .playerHand{
     height: 200px;
     width: 100px;
-    border: solid yellow;
+    /* border: solid yellow; */
     margin-left: 20px;
     display: flex;
 }
