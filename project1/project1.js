@@ -11,6 +11,8 @@ const Cards = {
      '10-Diamond', 'J-Diamond', 'Q-Diamond', 'K-Diamond', 'A-Spade', '2-Spade', '3-Spade', '4-Spade', '5-Spade', '6-Spade', '7-Spade',
       '8-Spade', '9-Spade', '10-Spade', 'J-Spade', 'Q-Spade', 'K-Spade'],
     standCount: 0,
+    topCard:"",
+    image: "images/" + Cards.topCard + ".png",
 
     shuffleDeck: function () {
         for (let s = Cards.deck2.length; s < 52; s++) {
@@ -35,6 +37,7 @@ const Cards = {
             }
         }
     },
+
 
     hitDealer: function () {
         while (Dealer.points < 17) {
@@ -67,8 +70,10 @@ const Cards = {
                 let topCard = Cards.deck2[Cards.deck2.length - 1]
                 Player.hand.push(topCard);
                 Cards.deck2.pop();
+                console.log(topCard); 
             }
         }
+               
         console.log(Player.hand);
     },
 
@@ -156,6 +161,8 @@ const Cards = {
         //return Dealer.points;
     },
 }
+
+
 
 const Dealer = {
     cards: 0,
