@@ -24,6 +24,7 @@ const Cards = {
     },
 
     hit: function () {
+        if(Cards.standCount == 0){
         if (Player.points < 21) {
             if (Player.hand.length > 1 && Player.hand.length < 5) {
                 {
@@ -43,40 +44,46 @@ const Cards = {
                 }
             }
         }
+        }
     },
 
 
     hitDealer: function () {
-        while (Dealer.points < 17) {
             if (Dealer.hand.length > 1 && Dealer.hand.length < 5) {
-                {
+                Cards.getDealerPoints();
+                 if(Dealer.points < 17){
                     let topCard = Cards.deck2[Cards.deck2.length - 1]
+                    
+                    for (let dealerUnflippedCards = 0; dealerUnflippedCards < 3; dealerUnflippedCards++) {
                     Dealer.hand.push(topCard)
-                    if (Cards.hitCount == 0) {
-                        $("#faceDownCard8").attr('src', topCard + ".png")
+                    if (Dealer.hitCount == 0) {
+                        $("#faceDownCard3").attr('src', topCard + ".png")
                     }
-                    if (Cards.hitCount == 1) {
-                        $("#faceDownCard9").attr('src', topCard + ".png")
+                    else if (Dealer.hitCount == 1) {
+                        $("#faceDownCard4").attr('src', topCard + ".png")
                     }
-                    if (Cards.hitCount == 2) {
-                        $("#faceDownCard10").attr('src', topCard + ".png")
-                    }                    
+                    else if (Dealer.hitCount == 2) {
+                        $("#faceDownCard5").attr('src', topCard + ".png")
+                    }                 
+                   
                     Cards.deck2.pop();
-                    Cards.getDealerPoints();
-                }
+                    Dealer.hitCount = Dealer.hitCount + 1;
+                    console.log(Dealer.hitCount)
+                    
+                  }            
+            
+                
+            }
                 console.log(Dealer.hand)
                 console.log(Dealer.points)
-            }
+                console.log(Dealer.hitCount)
+                
         }
     },
 
     stand: function () {
-        while(this.standCount == 0){
+        Cards.standCount = Cards.standCount + 1;
         Cards.hitDealer();     
-        this.standCount++; 
-        }
-
-        Cards.determineWinner();
 
     },
 
@@ -104,7 +111,6 @@ const Cards = {
                 Dealer.hand.push(topCard);
                 Cards.deck2.pop();
                 document.getElementById("faceDownCard").src = Dealer.hand[0] + ".png"
-
             }
         }
         console.log(Dealer.hand);
@@ -146,9 +152,9 @@ const Cards = {
                     Player.points = Player.points + 11
                 }
             } 
-        Cards.determineWinner();
+        //Cards.determineWinner();
         }
-        console.log(Player.points)
+        return Player.points;
     },
 
     getDealerPoints: function () {
@@ -172,9 +178,8 @@ const Cards = {
             }
         Cards.determineWinner();
         }
-        console.log(Dealer)
-        console.log(Dealer.points)
-        //return Dealer.points;
+
+        return Dealer.points;
     },
 }
 
@@ -184,6 +189,7 @@ const Dealer = {
     cards: 0,
     points: 0,
     hand: [],
+    hitCount: 0,
 
 }
 
