@@ -11,8 +11,8 @@ const Cards = {
      '10-Diamond', 'J-Diamond', 'Q-Diamond', 'K-Diamond', 'A-Spade', '2-Spade', '3-Spade', '4-Spade', '5-Spade', '6-Spade', '7-Spade',
       '8-Spade', '9-Spade', '10-Spade', 'J-Spade', 'Q-Spade', 'K-Spade'],
     standCount: 0,
-    topCard:"",
-    image: "images/" + Cards.topCard + ".png",
+    cardSpot: 0,
+    
 
     shuffleDeck: function () {
         for (let s = Cards.deck2.length; s < 52; s++) {
@@ -29,10 +29,17 @@ const Cards = {
                 {
                     let topCard = Cards.deck2[Cards.deck2.length - 1]
                     Player.hand.push(topCard)
-                    console.log(topCard)
-                    console.log(typeof topCard);
-                    console.log(Player.hand)
-                    Cards.deck2.pop();
+                    if (Player.hitCount == 0) {
+                        $("#faceDownCard8").attr('src', topCard + ".png")
+                    }
+                    if (Player.hitCount == 1) {
+                        $("#faceDownCard9").attr('src', topCard + ".png")
+                    }
+                    if (Player.hitCount == 2) {
+                        $("#faceDownCard10").attr('src', topCard + ".png")
+                    }                    
+                    Cards.deck2.pop();                    
+                    Player.hitCount = Player.hitCount + 1;
                 }
             }
         }
@@ -45,6 +52,15 @@ const Cards = {
                 {
                     let topCard = Cards.deck2[Cards.deck2.length - 1]
                     Dealer.hand.push(topCard)
+                    if (Cards.hitCount == 0) {
+                        $("#faceDownCard8").attr('src', topCard + ".png")
+                    }
+                    if (Cards.hitCount == 1) {
+                        $("#faceDownCard9").attr('src', topCard + ".png")
+                    }
+                    if (Cards.hitCount == 2) {
+                        $("#faceDownCard10").attr('src', topCard + ".png")
+                    }                    
                     Cards.deck2.pop();
                     Cards.getDealerPoints();
                 }
@@ -69,6 +85,10 @@ const Cards = {
             for (i = Player.cards; i < 2; i++) {
                 let topCard = Cards.deck2[Cards.deck2.length - 1]
                 Player.hand.push(topCard);
+                // if(topCard > 0){
+                document.getElementById("faceDownCard6").src = Player.hand[0] + ".png"
+                document.getElementById("faceDownCard7").src = Player.hand[1] + ".png"
+                // }
                 Cards.deck2.pop();
                 console.log(topCard); 
             }
@@ -83,6 +103,8 @@ const Cards = {
                 let topCard = Cards.deck2[Cards.deck2.length - 1]
                 Dealer.hand.push(topCard);
                 Cards.deck2.pop();
+                document.getElementById("faceDownCard").src = Dealer.hand[0] + ".png"
+
             }
         }
         console.log(Dealer.hand);
@@ -125,15 +147,9 @@ const Cards = {
                 }
             } 
         Cards.determineWinner();
-        Cards.changeCardVisual();
         }
         console.log(Player.points)
     },
-
-    changeCardVisual: function(){
-        document.getElementById('Dealer1stCard').textContent = cardInHand[0];
-    },
-
 
     getDealerPoints: function () {
         Dealer.points = 0;
@@ -175,6 +191,7 @@ const Player = {
     cards: 0,
     points: 0,
     hand: [],
+    hitCount: 0,
 
 }
 
