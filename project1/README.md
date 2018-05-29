@@ -15,7 +15,7 @@ Let the dealer draw additional cards until their hand exceeds 21.
   * Languages - HTML5, CSS3, Javascript
   * Wireframe - Balsamiq
   * Project Planning & User Stories - [Trello](https://trello.com/b/ZfgBj7PV/project-1)
-  * Deployment - Bitballoon - [Bitballoon](https://www.bitballoon.com/sites/awesome-mirzakhani-e0f11d)
+  * Deployment - Bitballoon - [Bitballoon](https://www.bitballoon.com/sites/hungry-ramanujan-3ed6bf)
   * Visual Studio Code
   * iTerm
 

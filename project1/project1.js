@@ -25,6 +25,10 @@ const Cards = {
         Cards.deal2CardstoDealer();
     },
 
+    reset: function(){
+        
+    },
+
     hit: function () {
         if(Cards.standCount == 0){
         if (Player.points < 21) {
@@ -335,4 +339,4 @@ $(document).ready(function () { // doc start
         })
 
 
-}) //doc end
+}) 
