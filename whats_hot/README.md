@@ -17,5 +17,4 @@ The aim of this assignment was to make a game that would let the user to view an
   * View ratings
   * Make rating
 
-  ![pic](public/wireFrames4.jpg)
   ![pic](public/erd4.jpg)
