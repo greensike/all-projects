@@ -1,24 +1,21 @@
-# README
+#  Project4 : What Hot
+## Project Description
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The aim of this assignment was to make a game that would let the user to view and rate the live events of the city of Atlanta. The user can view each event and see a live rating of the people who are there. Then if they make an account they can post a comment as well on how the event is to them. 
 
-Things you may want to cover:
+## Technologies Used
 
-* Ruby version
+  * Languages - HTML5, CSS3, React, Rails 
+  * Wireframe - Balsamiq
+  * Project Planning & User Stories - [Trello](https://trello.com/b/0j1ykoL9/project-4)
+  * Visual Studio Code
+  * iTerm
 
-* System dependencies
 
-* Configuration
+## Features
 
-* Database creation
+  * View ratings
+  * Make rating
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  ![pic](wireFrames4.jpg)
+  ![pic](erd4.jpg)

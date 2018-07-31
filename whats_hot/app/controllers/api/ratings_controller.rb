@@ -10,9 +10,10 @@ class Api::RatingsController < ApplicationController
     end
     
     def create
-        @city = City.find(params[:id])
-        @event = @event.events.create(event_params)
-        render json: @event
+        @city = City.find(params[:city_id])
+        @event = Event.find_by_id(params[:event_id])
+        @rating = @event.ratings.create!(rating_params)
+        render json: @rating
     end
 
     def show   
@@ -33,7 +34,7 @@ class Api::RatingsController < ApplicationController
 
       private
       def rating_params
-        params.require(:rating).permit(:rating, :description, :event_id)
+        params.require(:rating).permit(:rating_value, :description, :event_id)
       end
     
 end

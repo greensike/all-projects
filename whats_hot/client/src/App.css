@@ -15,9 +15,25 @@
   border-top: solid black;
   border-bottom: solid black;
   background-size: cover;
+  margin-bottom: 2vh;
   background-image: url('https://www.atlantaphotos.com/media/wysiwyg/AP/ATLANTA.jpg');
 }
 
 #logoDiv{
   display: inline-flex;
+}
+
+#eventsList{
+  width: 33vw;
+  height: 80vh;
+  margin: auto;
+}
+
+#eventPic{
+  width: 20vw;
+}
+
+#eventBox{
+  border: solid;
+  padding: 5%;
 }

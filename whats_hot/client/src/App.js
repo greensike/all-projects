@@ -1,8 +1,34 @@
 import React, { Component } from 'react';
 import './App.css';
+import axios from 'axios'
 
 class App extends Component {
+  state={
+    events:[]
+  }
+
+  getEvents = (cityId) =>{
+    axios.get(`/api/cities/${cityId}/events`).then(res =>{
+      this.setState({events: res.data})
+    })
+  }
+  
+  componentDidMount() {
+    this.getEvents(1)
+  }
   render() {
+    console.log(this.state.events)
+    const listOfEvents = this.state.events.map(event =>{
+      return(<div id = "eventBox" key={event.id}>
+        <h1>{event.name}</h1>
+        <p>{event.address}</p>
+        <p>{event.description}</p>
+        <p>{event.date}</p>
+        <img id = "eventPic" src = {event.photo_url} ></img>
+      </div>)
+    }
+      
+    )
     return (
       <div className="App">
         <header className="App-header">
@@ -12,8 +38,8 @@ class App extends Component {
         </div>
         </header>
         <div id = "banner" ></div>
-        <div>
-          
+        <div id = "eventsList">
+        {listOfEvents}
         </div>
       </div>
     );
